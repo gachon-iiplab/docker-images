@@ -29,10 +29,8 @@ jobs:
     - run : echo "deployUrl ${{ github.event.inputs.deployUrl }}"
     - run : echo "onlyDeploy ${{ inputs.onlyDeploy }}"
     - run : echo "dockerTags ${{ github.event.inputs.dockerTags }}"
-  
   dockerBuild:
     needs: checkParameters
-    if: ${{ github.event.inputs.onlyDeploy }} == "false"
     runs-on: ubuntu-latest
     steps:
     - run: echo Hello world!
