@@ -21,7 +21,8 @@ on:
         type: string
 
 jobs:
-  test:
+  dockerBuild:
+    if: ${{ !onlyDeploy }}
     runs-on: ubuntu-latest
     steps:
     - run: echo Hello world!
