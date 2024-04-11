@@ -1,4 +1,4 @@
-name: iiplab application deployment.
+name: iiplab application deployment
 
 run-name: Run with ${{ github.sha }} commit by ${{ github.actor }}
 
@@ -34,3 +34,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: echo Hello world!
+    - run: docker ps
