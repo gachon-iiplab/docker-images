@@ -54,6 +54,9 @@ jobs:
   runSSH:
     runs-on: ubuntu-latest
     steps:
-      - run: sshpass -p 123qwe!@# ssh iiplab@192.9.200.226
+      - run: | 
+             sshpass -p 123qwe!@# ssh iiplab@192.9.200.226
+             ls -la
+             sudo docker ps
      
               
