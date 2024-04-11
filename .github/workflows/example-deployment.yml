@@ -1,3 +1,7 @@
+name: iiplab application deployment.
+
+run-name: Run with ${{ github.sha }} commit by ${{ github.actor }}
+
 on:
   workflow_dispatch:
     inputs:
