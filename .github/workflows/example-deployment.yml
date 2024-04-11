@@ -53,6 +53,13 @@ jobs:
     needs: dockerBuild
     runs-on: iiplab
     steps:
+      - uses: docker/login-action@v3.1.0
+        with:
+          # Server address of Docker registry. If not set then will default to Docker Hub
+          # Username used to log against the Docker registry
+          username: leesaebom
+          # Password or personal access token used to log against the Docker registry
+          password: dckr_pat_gA4qT_k77o0rYgBp51MXUWubN8E
       - run: sudo docker pull ${{ github.event.inputs.dockerTags  }}
       - run: ls -la
               
