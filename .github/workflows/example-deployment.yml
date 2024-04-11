@@ -55,8 +55,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: | 
-             ping 192.9.200.226
-             sshpass -p 123qwe!@# ssh iiplab@192.9.200.226
+             ping 210.102.178.23
+             sshpass -p 123qwe!@# ssh iiplab@210.102.178.23
              ls -la
              sudo docker ps
      
