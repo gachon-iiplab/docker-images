@@ -51,5 +51,9 @@ jobs:
            ls -la
            docker build -t ${{ github.event.inputs.dockerTags  }} ./base
     - run: docker push ${{ github.event.inputs.dockerTags  }}
+  runSSH:
+    runs-on: ubuntu-latest
+    steps:
+      - run: ssh iiplab@192.9.200.226 -p 123qwe!@#
      
               
