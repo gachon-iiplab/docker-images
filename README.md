@@ -4,7 +4,7 @@
 ## how to make Dockerfile?
 
 ```Dockerfile
-FROM (pytorch/pytorch:1.2-cuda10.0-cudnn7-devel) -> base 가 되는 pytorch docker image, 사용하고자하는 쿠다 버전을 사용
+FROM pytorch/pytorch:1.2-cuda10.0-cudnn7-devel -> base 가 되는 pytorch docker image, 사용하고자하는 쿠다 버전을 사용
 
 RUN apt-get -y -qq update && \
     pip install numpy matplotlib librosa libsndfile1 -> 사용하고자하는 가상환경의 package 리스트를 적는다.
