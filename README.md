@@ -9,3 +9,6 @@ FROM pytorch/pytorch:1.2-cuda10.0-cudnn7-devel -> base 가 되는 pytorch docker
 RUN apt-get -y -qq update && \
     pip install numpy matplotlib librosa libsndfile1 -> 사용하고자하는 가상환경의 package 리스트를 적는다.
 ```
+
+### base image 로 사용할 pytorch 버전 image 태그 리스트
+https://hub.docker.com/r/pytorch/pytorch/tags
