@@ -15,3 +15,9 @@ on:
         description: '빌드 / 배포할 환경의 docker tag'
         required: false
         type: string
+
+jobs:
+  test:
+    runs-on: [self-hosted, "${{ inputs.chosen-os }}"]
+    steps:
+    - run: echo Hello world!
