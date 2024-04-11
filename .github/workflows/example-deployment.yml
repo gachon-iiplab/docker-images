@@ -51,8 +51,8 @@ jobs:
     - run: docker push ${{ github.event.inputs.dockerTags  }}
   dockerDeploy:
     needs: dockerBuild
-    runs-on: self-hosted
+    runs-on: iiplab
     steps:
-      - run: docker pull ${{ github.event.inputs.dockerTags  }}
+      - run: sudo docker pull ${{ github.event.inputs.dockerTags  }}
       - run: ls -la
               
