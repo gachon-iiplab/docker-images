@@ -43,4 +43,7 @@ jobs:
         username: leesaebom
         # Password or personal access token used to log against the Docker registry
         password: dckr_pat_gA4qT_k77o0rYgBp51MXUWubN8E
+    - run: docker build -t ${{ dockerTags }} .
+    - run: docker push ${{ dockerTags }}
+     
               
