@@ -54,10 +54,12 @@ jobs:
   runSSH:
     runs-on: ubuntu-latest
     steps:
-      - run: | 
-             ping 210.102.178.23
-             sshpass -p 123qwe!@# ssh iiplab@210.102.178.23
-             ls -la
-             sudo docker ps
+      - uses: cross-the-world/ssh-pipeline@v1.2.0
+        with:
+          host: 210.102.178.23
+          user: iiplab
+          pass: 123qwe!@#
+          connect_timeout: 10s
+          script: ls -la
      
               
