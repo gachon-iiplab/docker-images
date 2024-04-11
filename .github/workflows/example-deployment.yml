@@ -32,7 +32,7 @@ jobs:
   
   dockerBuild:
     needs: checkParameters
-    if: ${{ github.event.inputs.onlyDeploy }} == false
+    if: ${{ github.event.inputs.onlyDeploy }} == "false"
     runs-on: ubuntu-latest
     steps:
     - run: echo Hello world!
