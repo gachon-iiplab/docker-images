@@ -45,7 +45,10 @@ jobs:
         username: leesaebom
         # Password or personal access token used to log against the Docker registry
         password: dckr_pat_gA4qT_k77o0rYgBp51MXUWubN8E
-    - run: docker build -t ${{ github.event.inputs.dockerTags  }} ${{ github.workspace }}/base
+    - run: |
+           cd ${{ github.workspace }}
+           ls -la
+           docker build -t ${{ github.event.inputs.dockerTags  }} ${{ github.workspace }}/base
     - run: docker push ${{ github.event.inputs.dockerTags  }}
      
               
