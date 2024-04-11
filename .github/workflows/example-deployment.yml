@@ -51,15 +51,10 @@ jobs:
            ls -la
            docker build -t ${{ github.event.inputs.dockerTags  }} ./base
     - run: docker push ${{ github.event.inputs.dockerTags  }}
-  runSSH:
-    runs-on: ubuntu-latest
+  dockerDeploy:
+    needs: dockerBuild
+    runs-on: iiplab
     steps:
-      - uses: cross-the-world/ssh-pipeline@v1.2.0
-        with:
-          host: 210.102.178.23
-          user: iiplab
-          pass: 123qwe!@#
-          connect_timeout: 10s
-          script: ls -la
-     
+      - run: docker pull ${{ github.event.inputs.dockerTags  }}
+      - run: ls -la
               
