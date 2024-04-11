@@ -54,6 +54,6 @@ jobs:
   runSSH:
     runs-on: ubuntu-latest
     steps:
-      - run: ssh iiplab@192.9.200.226 -p 123qwe!@#
+      - run: sshpass -p 123qwe!@# ssh iiplab@192.9.200.226
      
               
