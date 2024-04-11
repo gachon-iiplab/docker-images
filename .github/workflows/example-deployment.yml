@@ -20,7 +20,8 @@ on:
         required: false
         default: 'leesaebom/iiplab:tagname'
         type: string
-
+   
+          
 jobs:
   checkParameters:
     runs-on: ubuntu-latest
@@ -28,10 +29,19 @@ jobs:
     - run : echo "deployUrl ${{ github.event.inputs.deployUrl }}"
     - run : echo "onlyDeploy ${{ inputs.onlyDeploy }}"
     - run : echo "dockerTags ${{ github.event.inputs.dockerTags }}"
+  
   dockerBuild:
     needs: checkParameters
     if: ${{ github.event.inputs.onlyDeploy }} == false
     runs-on: ubuntu-latest
     steps:
     - run: echo Hello world!
-    - run: docker ps
+    - uses: docker/login-action@v3.1.0
+      with:
+        # Server address of Docker registry. If not set then will default to Docker Hub
+        registry: leesaebom/iiplab
+        # Username used to log against the Docker registry
+        username: leesaebom
+        # Password or personal access token used to log against the Docker registry
+        password: dckr_pat_gA4qT_k77o0rYgBp51MXUWubN8E
+              
