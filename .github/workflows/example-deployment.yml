@@ -50,7 +50,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
     - uses: actions/checkout@v4.1.2
       with:
-        repository: ${{ github.repository }}
+        repository: ${{ github.event.inputs.deployUrl }}
         ref: ${{ github.event.inputs.deployBranch }}"
     - run: |
            ls -la
