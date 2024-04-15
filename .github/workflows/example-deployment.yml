@@ -56,7 +56,7 @@ jobs:
            docker build -t ${{ github.event.inputs.dockerTags  }} ./base
     - run: docker push ${{ github.event.inputs.dockerTags  }}
   dockerDeploy:
-    needs: checkParameters
+    needs: dockerBuild
     runs-on: iiplab
     env: 
       GIT_URL: ${{ github.event.inputs.deployUrl }}
