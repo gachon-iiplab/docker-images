@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run : echo "deployUrl ${{ github.event.inputs.deployUrl }}"
-    - run : echo "onlyDeploy ${{ inputs.filename }}"
+    - run : echo "onlyDeploy ${{ github.event.inputs.filename }}"
     - run : echo "onlyDeploy ${{ inputs.onlyDeploy }}"
     - run : echo "dockerTags ${{ github.event.inputs.dockerTags }}"
   dockerBuild:
