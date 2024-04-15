@@ -37,7 +37,7 @@ jobs:
     - run : echo "dockerTags ${{ github.event.inputs.dockerTags }}"
   dockerBuild:
     needs: checkParameters
-    runs-on: iiplab
+    runs-on: ubuntu-latest
     steps:
     - run: cd ${{ github.workspace }}
     - run: echo ${{ github.repository }}
@@ -64,9 +64,9 @@ jobs:
         with:
           # Server address of Docker registry. If not set then will default to Docker Hub
           # Username used to log against the Docker registry
-          username: leesaebom
+          username: ${{ secrets.DOCKER_USERNAME }}
           # Password or personal access token used to log against the Docker registry
-          password: dckr_pat_gA4qT_k77o0rYgBp51MXUWubN8E
+          password: ${{ secrets.DOCKER_PASSWORD }}
       - run: docker pull ${{ github.event.inputs.dockerTags  }}
       - run: docker run --gpus all ${{ github.event.inputs.dockerTags }}
     
