@@ -17,4 +17,4 @@ RUN echo $FILENAME
 RUN ls -la
 
 CMD [$FILENAME]
-ENTRYPOINT ["python"]
+ENTRYPOINT ["python3"]
