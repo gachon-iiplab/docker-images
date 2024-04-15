@@ -8,7 +8,7 @@ RUN apt-get upgrade -y --allow-unauthenticated
 
 
 ARG FILENAME
-ENV FILE_NAME ${FILE_NAME}
+ENV FILE_NAME ${FILENAME}
 
 ONBUILD RUN ls -la
 
