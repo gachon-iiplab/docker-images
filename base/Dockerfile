@@ -11,10 +11,10 @@ RUN apt-get upgrade -y --allow-unauthenticated
 
 ONBUILD RUN ls -la
 
-COPY main.py main.py
+COPY . .
 
 RUN echo $FILENAME
 RUN ls -la
 
-CMD ["main.py"]
+CMD [ $FILENAME ]
 ENTRYPOINT ["python3"]
