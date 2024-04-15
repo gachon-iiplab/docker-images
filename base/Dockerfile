@@ -17,5 +17,5 @@ COPY . .
 RUN echo ${FILE_NAME}
 RUN ls -la
 
-CMD [ "${FILE_NAME}" ]
+CMD [ "$FILE_NAME" ]
 ENTRYPOINT ["python3"]
