@@ -30,7 +30,6 @@ jobs:
     - run : echo "onlyDeploy ${{ inputs.onlyDeploy }}"
     - run : echo "dockerTags ${{ github.event.inputs.dockerTags }}"
   dockerBuild:
-    if: false
     needs: checkParameters
     runs-on: ubuntu-latest
     steps:
