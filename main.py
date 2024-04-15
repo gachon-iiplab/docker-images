@@ -1,3 +1,5 @@
 # -*- coding: utf-8 -*-
 import torch
-print(torch.cuda.is_available())
+
+if __name__ == '__main__':
+  print(torch.cuda.is_available())
