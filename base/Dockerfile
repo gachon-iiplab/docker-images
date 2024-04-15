@@ -14,7 +14,7 @@ ONBUILD RUN ls -la
 
 COPY . .
 
-RUN echo $FILE_NAME
+RUN echo ${FILE_NAME}
 RUN ls -la
 
 CMD [ ${FILE_NAME} ]
