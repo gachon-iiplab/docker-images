@@ -47,9 +47,12 @@ jobs:
         username: leesaebom
         # Password or personal access token used to log against the Docker registry
         password: dckr_pat_gA4qT_k77o0rYgBp51MXUWubN8E
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4.1.2
+      with:
+        repository: ${{ github.repository }}
+        # The branch, tag or SHA to checkout. When checking out the repository that triggered a workflow, this defaults to the reference or SHA for that event.  Otherwise, uses the default branch.
+        ref: main
     - run: |
-           cd ${{ github.workspace }}
            docker build --build-arg GIT_URL=${{ github.event.inputs.deployUrl }} --build-arg FILENAME=${{ github.event.inputs.filename }} -t ${{ github.event.inputs.dockerTags  }} ./base
     - run: docker push ${{ github.event.inputs.dockerTags  }}
   dockerDeploy:
