@@ -14,5 +14,5 @@ ONBUILD COPY main.py .
 RUN echo $FILENAME
 RUN ls -la
 
-CMD [$FILENAME]
+CMD ["main.py"]
 ENTRYPOINT ["python3"]
