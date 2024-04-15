@@ -7,6 +7,6 @@ RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install git -y
 
-RUN git clone $GIT_PATH
+RUN git clone $GIT_URL
 
-ENTRYPOINT ['python', $FILE_NAME]
+ENTRYPOINT ['python', $FILENAME]
