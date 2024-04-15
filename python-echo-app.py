@@ -1,1 +1,3 @@
-print("Hello World!. This application is running")
+import torch
+
+print(torch.cuda.is_available())
