@@ -13,4 +13,5 @@ RUN apt-get install git -y
 RUN git config --global --add safe.directory .
 RUN git clone $GIT_URL
 
-CMD python $FILENAME
+ENTRYPOINT ["python"]
+CMD $FILENAME
