@@ -12,6 +12,7 @@ RUN apt-get install git -y
 
 RUN git config --global --add safe.directory .
 RUN git clone $GIT_URL
+RUN git pull origin main
 
 RUN echo $FILENAME
 RUN ls -la
