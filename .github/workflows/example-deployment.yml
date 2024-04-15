@@ -38,6 +38,9 @@ jobs:
   dockerBuild:
     needs: checkParameters
     runs-on: ubuntu-latest
+    env: 
+      GIT_URL: ${{ github.event.inputs.deployUrl }}
+      FILENAME: ${{ github.event.inputs.filename }}
     steps:
     - run: echo Hello world!
     - run: cd ${{ github.workspace }}
@@ -58,9 +61,6 @@ jobs:
   dockerDeploy:
     needs: dockerBuild
     runs-on: iiplab
-    env: 
-      GIT_URL: ${{ github.event.inputs.deployUrl }}
-      FILENAME: ${{ github.event.inputs.filename }}
     steps:
       - uses: docker/login-action@v3.1.0
         with:
