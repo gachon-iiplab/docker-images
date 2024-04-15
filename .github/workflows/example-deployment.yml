@@ -10,16 +10,16 @@ on:
         required: true
         default: 'https://github.com/gachon-iiplab/docker-images.git'
         type: string
+      deployBranch:
+        description: 'git branch'
+        required: true
+        default: 'main'
+        type: string
       filename:
         description: '위 깃헙에서 실행시킬 파일의 이름'
         required: false
         default: 'main.py'
         type: string
-      onlyDeploy:
-        description: '빌드를 하지 않고 배포만 할지'
-        required: false
-        default: 'false'
-        type: boolean
       dockerTags:
         description: '빌드 / 배포할 환경의 docker tag'
         required: false
@@ -32,8 +32,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run : echo "deployUrl ${{ github.event.inputs.deployUrl }}"
+    - run : echo "deployBranch ${{ github.event.inputs.deployBranch }}"
     - run : echo "onlyDeploy ${{ github.event.inputs.filename }}"
-    - run : echo "onlyDeploy ${{ inputs.onlyDeploy }}"
     - run : echo "dockerTags ${{ github.event.inputs.dockerTags }}"
   dockerBuild:
     needs: checkParameters
@@ -49,9 +49,8 @@ jobs:
         password: dckr_pat_gA4qT_k77o0rYgBp51MXUWubN8E
     - uses: actions/checkout@v4.1.2
       with:
-        repository: ${{ github.repository }}
-        # The branch, tag or SHA to checkout. When checking out the repository that triggered a workflow, this defaults to the reference or SHA for that event.  Otherwise, uses the default branch.
-        ref: main
+        repository: ${{ github.event.inputs.deployUrl }}
+        ref: ${{ github.event.inputs.deployBranch }}"
     - run: |
            ls -la
            docker build --build-arg GIT_URL=${{ github.event.inputs.deployUrl }} --build-arg FILENAME=${{ github.event.inputs.filename }} -t ${{ github.event.inputs.dockerTags  }} ./base
@@ -68,7 +67,6 @@ jobs:
           # Password or personal access token used to log against the Docker registry
           password: dckr_pat_gA4qT_k77o0rYgBp51MXUWubN8E
       - run: docker pull ${{ github.event.inputs.dockerTags  }}
-      - run: ls -la
       - run: docker run --gpus all ${{ github.event.inputs.dockerTags }}
     
               
