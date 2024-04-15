@@ -14,6 +14,7 @@ RUN git config --global --add safe.directory .
 RUN git clone $GIT_URL
 
 RUN echo $FILENAME
+RUN ls -la
 
 CMD [$FILENAME]
 ENTRYPOINT ["python"]
