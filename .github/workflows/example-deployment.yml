@@ -69,4 +69,6 @@ jobs:
           password: dckr_pat_gA4qT_k77o0rYgBp51MXUWubN8E
       - run: docker pull ${{ github.event.inputs.dockerTags  }}
       - run: ls -la
+      - run: docker run --gpus all ${{ github.event.inputs.dockerTags }}
+    
               
