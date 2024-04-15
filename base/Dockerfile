@@ -9,7 +9,7 @@ RUN apt-get -y -qq update && \
 RUN apt-get update
 RUN apt-get upgrade -y --allow-unauthenticated
 
-ONBUILD COPY ./main.py .
+ONBUILD COPY . .
 
 RUN echo $FILENAME
 RUN ls -la
