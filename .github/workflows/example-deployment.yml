@@ -51,7 +51,7 @@ jobs:
     - uses: actions/checkout@v4.1.2
       with:
         repository: ${{ github.event.inputs.deployUrl }}
-        ref: ${{ github.event.inputs.deployBranch }}"
+        ref: ${{ github.event.inputs.deployBranch }}
     - run: |
            ls -la
            docker build --build-arg GIT_URL=${{ github.event.inputs.deployUrl }} --build-arg FILENAME=${{ github.event.inputs.filename }} -t ${{ github.event.inputs.dockerTags  }} ./base
