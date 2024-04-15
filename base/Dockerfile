@@ -8,10 +8,8 @@ RUN apt-get -y -qq update && \
 
 RUN apt-get update
 RUN apt-get upgrade -y --allow-unauthenticated
-RUN apt-get install git -y
 
-RUN git config --global --add safe.directory .
-ONBUILD RUN git clone $GIT_URL
+COPY * .
 
 RUN echo $FILENAME
 RUN ls -la
