@@ -10,6 +10,11 @@ on:
         required: true
         default: 'https://github.com/gachon-iiplab/docker-images.git'
         type: string
+      filename:
+        description: '위 깃헙에서 실행시킬 파일의 이름'
+        required: false
+        default: 'main.py'
+        type: string
       onlyDeploy:
         description: '빌드를 하지 않고 배포만 할지'
         required: false
@@ -27,6 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run : echo "deployUrl ${{ github.event.inputs.deployUrl }}"
+    - run : echo "onlyDeploy ${{ inputs.filename }}"
     - run : echo "onlyDeploy ${{ inputs.onlyDeploy }}"
     - run : echo "dockerTags ${{ github.event.inputs.dockerTags }}"
   dockerBuild:
@@ -54,7 +60,7 @@ jobs:
     runs-on: iiplab
     env: 
       GIT_URL: ${{ github.event.inputs.deployUrl }}
-      FILENAME: python-echo-app.py
+      FILENAME: ${{ github.event.inputs.filename }}
     steps:
       - uses: docker/login-action@v3.1.0
         with:
