@@ -1,7 +1,5 @@
 name: iiplab application deployment
 
-run-name: Run with ${{ github.sha }} commit by ${{ github.actor }}
-
 on:
   workflow_dispatch:
     inputs:
@@ -25,7 +23,8 @@ on:
         required: false
         default: 'leesaebom/iiplab:latest'
         type: string
-   
+
+run-name: Run application by ${{ github.actor }}, tag : ${{ github.event.inputs.dockerTags }}
           
 jobs:
   checkParameters:
