@@ -15,6 +15,11 @@ on:
         required: true
         default: 'main'
         type: string
+      parameters:
+        description: 'python 파일 실행 시, 넘길 파라미터.'
+        required: false
+        default: ''
+        type: string
       filename:
         description: '위 깃헙에서 실행시킬 파일의 이름'
         required: false
