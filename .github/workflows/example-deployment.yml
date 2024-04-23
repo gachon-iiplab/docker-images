@@ -1,4 +1,4 @@
-name: iiplab application deployment
+name: iiplab application build / deployment
 
 run-name: Run application by ${{ github.actor }}
 
