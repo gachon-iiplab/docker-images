@@ -54,7 +54,7 @@ jobs:
         repository: ${{ github.event.inputs.deployUrl }}
         ref: ${{ github.event.inputs.deployBranch }}
     - run: |
-           docker build --build-arg GIT_URL=${{ github.event.inputs.deployUrl }} --build-arg FILENAME=${{ github.event.inputs.filename }} -t ${{ github.event.inputs.dockerTags  }} .
+           docker build --platform=linux/amd64 --build-arg GIT_URL=${{ github.event.inputs.deployUrl }} --build-arg FILENAME=${{ github.event.inputs.filename }} -t ${{ github.event.inputs.dockerTags  }} .
     - run: docker push ${{ github.event.inputs.dockerTags  }}
   dockerDeploy:
     needs: dockerBuild
