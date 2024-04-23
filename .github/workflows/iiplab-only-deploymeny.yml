@@ -1,0 +1,65 @@
+name: iiplab application build / deployment
+
+run-name: Run application by ${{ github.actor }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      deployUrl:
+        description: 'git url'
+        required: true
+        default: 'gachon-iiplab/docker-images'
+        type: string
+      deployBranch:
+        description: 'git branch'
+        required: true
+        default: 'main'
+        type: string
+      filename:
+        description: '위 깃헙에서 실행시킬 파일의 이름'
+        required: false
+        default: 'main.py'
+        type: string
+      dockerTags:
+        description: '빌드 / 배포할 환경의 docker tag'
+        required: false
+        default: 'leesaebom/iiplab:latest'
+        type: string
+          
+jobs:
+  checkParameters:
+    runs-on: ubuntu-latest
+    steps:
+    - run : echo "deployUrl ${{ github.event.inputs.deployUrl }}"
+    - run : echo "deployBranch ${{ github.event.inputs.deployBranch }}"
+    - run : echo "onlyDeploy ${{ github.event.inputs.filename }}"
+    - run : echo "dockerTags ${{ github.event.inputs.dockerTags }}"
+  dockerBuild:
+    needs: checkParameters
+    runs-on: ubuntu-latest
+    steps:
+    - run: cd ${{ github.workspace }}
+    - run: echo ${{ github.repository }}
+    - uses: docker/login-action@v3.1.0
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+    - uses: actions/checkout@v4.1.2
+      with:
+        repository: ${{ github.event.inputs.deployUrl }}
+        ref: ${{ github.event.inputs.deployBranch }}
+    - run: |
+           docker build --build-arg GIT_URL=${{ github.event.inputs.deployUrl }} --build-arg FILENAME=${{ github.event.inputs.filename }} -t ${{ github.event.inputs.dockerTags  }} .
+    - run: docker push ${{ github.event.inputs.dockerTags  }}
+  dockerDeploy:
+    needs: dockerBuild
+    runs-on: iiplab
+    steps:
+      - uses: docker/login-action@v3.1.0
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - run: docker pull ${{ github.event.inputs.dockerTags  }}
+      - run: docker run --rm -v dataset:/home/iiplab/dataset/ --gpus all ${{ github.event.inputs.dockerTags }}
+    
+              
