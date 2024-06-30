@@ -41,7 +41,7 @@ jobs:
     - run : echo "dockerTags ${{ github.event.inputs.dockerTags }}"
   dockerBuild:
     needs: checkParameters
-    runs-on: ubuntu-latest
+    runs-on: iiplab
     steps:
     - run: cd ${{ github.workspace }}
     - run: echo ${{ github.repository }}
